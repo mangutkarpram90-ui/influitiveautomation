@@ -1633,6 +1633,9 @@ section{padding:88px 0;}
 <div class="contact-card">
 <h3>Send an Enquiry</h3>
 <form id="enquiryForm">
+<input name="_subject" type="hidden" value="New Website Enquiry - Influitive Automation"/>
+<input name="_captcha" type="hidden" value="false"/>
+<input name="_template" type="hidden" value="table"/>
 <div class="field">
 <label for="name">Full name</label>
 <input id="name" name="name" required="" type="text"/>
@@ -1868,7 +1871,7 @@ section{padding:88px 0;}
     msg.textContent = '';
 
     try {
-      const response = await fetch('send_inquiry.php', {
+      const response = await fetch('https://formsubmit.co/ajax/sales@influitiveautomation.com', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
@@ -1876,8 +1879,8 @@ section{padding:88px 0;}
 
       const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        throw new Error(result.message || 'Unable to send enquiry.');
+      if (!response.ok) {
+        throw new Error('Unable to send enquiry.');
       }
 
       msg.textContent = 'Thank you. Your enquiry has been sent successfully.';
