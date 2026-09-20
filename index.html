@@ -1853,7 +1853,6 @@ section{padding:88px 0;}
       const card = cardId ? document.getElementById(cardId) : null;
       if (card) {
         card.classList.add('product-selected');
-        setTimeout(() => card.scrollIntoView({behavior:'smooth', block:'center'}), 50);
       }
     });
   }
@@ -1921,7 +1920,7 @@ section{padding:88px 0;}
   function openProductImage(card){
     const img = card.querySelector('.product-image img');
     const title = card.querySelector('h3');
-    const src = img ? img.currentSrc || img.src : '';
+    const src = card.dataset.productImage || (img ? img.currentSrc || img.src : '');
     if (!src || !productImageModal || !productModalImage) return;
     productModalImage.src = src;
     productModalImage.alt = title ? title.textContent.trim() : 'Product image';
